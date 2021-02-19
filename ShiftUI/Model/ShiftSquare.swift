@@ -7,16 +7,20 @@
 
 import Foundation
 
-struct Position: Equatable, Hashable {
+struct Position: Equatable, Hashable, Comparable {
     let row: Int
     let column: Int
+    
+    static func < (lhs: Position, rhs: Position) -> Bool {
+        lhs.row < rhs.row || (lhs.row == rhs.row && lhs.column < rhs.column)
+    }
 }
 
 enum Direction {
     case up, down, left, right, none
 }
 
-class ShiftSquare: Hashable {
+class ShiftSquare: Hashable, Comparable, Identifiable {
     var column: Int
     var row: Int
     var shiftableDirections: Set<Direction> = []
@@ -44,6 +48,20 @@ class ShiftSquare: Hashable {
         }
     }
     
+    func shiftableDirection(on board: ShiftBoard) -> Direction {
+        if board.emptySquare.row == row {
+            return board.emptySquare.column < column ? .left : .right
+        } else if board.emptySquare.column == column {
+            return board.emptySquare.row < row ? .up : .down
+        } else {
+            return .none
+        }
+    }
+    
+    func shift(on board: ShiftBoard) {
+        board.shift(self)
+    }
+    
     func shift() {
         board.shift(self)
     }
@@ -60,4 +78,7 @@ class ShiftSquare: Hashable {
         lhs.solvedPosition == rhs.solvedPosition
     }
     
+    static func < (lhs: ShiftSquare, rhs: ShiftSquare) -> Bool {
+        lhs.position < rhs.position
+    }
 }

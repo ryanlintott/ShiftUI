@@ -13,6 +13,8 @@
 		CF434A0D25E025BE0065B8B1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF434A0C25E025BE0065B8B1 /* Preview Assets.xcassets */; };
 		CF434A1725E02A4F0065B8B1 /* ShiftBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A1625E02A4F0065B8B1 /* ShiftBoard.swift */; };
 		CF434A1B25E047BC0065B8B1 /* ShiftSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A1A25E047BC0065B8B1 /* ShiftSquare.swift */; };
+		CF434A2625E04B6A0065B8B1 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A2525E04B6A0065B8B1 /* BoardView.swift */; };
+		CF434A2925E054B60065B8B1 /* BoardPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A2825E054B60065B8B1 /* BoardPosition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		CF434A0E25E025BE0065B8B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF434A1625E02A4F0065B8B1 /* ShiftBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftBoard.swift; sourceTree = "<group>"; };
 		CF434A1A25E047BC0065B8B1 /* ShiftSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftSquare.swift; sourceTree = "<group>"; };
+		CF434A2525E04B6A0065B8B1 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		CF434A2825E054B60065B8B1 /* BoardPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPosition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,7 @@
 				CF434A0525E025BD0065B8B1 /* ShiftUIApp.swift */,
 				CF434A0725E025BD0065B8B1 /* ContentView.swift */,
 				CF434A1525E02A110065B8B1 /* Model */,
+				CF434A1F25E04B4A0065B8B1 /* View */,
 				CF434A0925E025BE0065B8B1 /* Assets.xcassets */,
 				CF434A0E25E025BE0065B8B1 /* Info.plist */,
 				CF434A0B25E025BE0065B8B1 /* Preview Content */,
@@ -78,9 +83,18 @@
 			isa = PBXGroup;
 			children = (
 				CF434A1625E02A4F0065B8B1 /* ShiftBoard.swift */,
+				CF434A2825E054B60065B8B1 /* BoardPosition.swift */,
 				CF434A1A25E047BC0065B8B1 /* ShiftSquare.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CF434A1F25E04B4A0065B8B1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF434A2525E04B6A0065B8B1 /* BoardView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +168,8 @@
 			files = (
 				CF434A1725E02A4F0065B8B1 /* ShiftBoard.swift in Sources */,
 				CF434A1B25E047BC0065B8B1 /* ShiftSquare.swift in Sources */,
+				CF434A2625E04B6A0065B8B1 /* BoardView.swift in Sources */,
+				CF434A2925E054B60065B8B1 /* BoardPosition.swift in Sources */,
 				CF434A0825E025BD0065B8B1 /* ContentView.swift in Sources */,
 				CF434A0625E025BD0065B8B1 /* ShiftUIApp.swift in Sources */,
 			);
