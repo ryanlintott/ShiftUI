@@ -10,76 +10,50 @@ import Foundation
 class ShiftBoard: ObservableObject {
     let totalColumns: Int
     let totalRows: Int
-    @Published var emptySquare: Position
+    
     @Published var squares: Set<ShiftSquare> = []
+    @Published var emptyPosition: Position
     
     init(columns: Int, rows: Int) {
         self.totalColumns = columns
         self.totalRows = rows
-        self.emptySquare = Position(row: rows, column: columns)
-        createSquares()
+        self.emptyPosition = Position(row: rows, column: columns)
+        createBoard()
     }
     
-    func row(_ rowNumber: Int) -> [BoardPosition] {
-        var positions: [BoardPosition] = squares.filter({ $0.row == rowNumber }).map({ .occupied(square: $0) } )
-        if emptySquare.row == rowNumber {
-            positions.append(.empty(position: emptySquare))
-        }
-        return positions.sorted()
-    }
-    
-    func createSquares() {
-        squares = []
+    func createBoard() {
         for row in 1...totalRows {
             for column in 1...totalColumns {
-                if emptySquare != Position(row: row, column: column) {
-                    squares.insert(ShiftSquare(board: self, solvedPosition: Position(row: row, column: column)))
+                let squarePosition = Position(row: row, column: column)
+                if emptyPosition != squarePosition {
+                    squares.insert(ShiftSquare(solvedPosition: squarePosition))
+                    print(squarePosition)
                 }
             }
         }
+        print(squares.sorted().map({ $0.log}))
+    }
+    
+    var positions: [BoardPosition] {
+        (squares.map({ BoardPosition.occupied(square: $0) }) + [.empty(position: emptyPosition)]).sorted()
     }
     
     func shiftableDirection(of square: ShiftSquare) -> Direction {
-        if square.row == emptySquare.row {
-            return square.column < emptySquare.column ? .right : .left
-        } else if square.column == emptySquare.column {
-            return square.row < emptySquare.row ? .down : .up
-        } else {
-            return .none
-        }
+        square.position.direction(to: emptyPosition)
     }
-    
-    func shiftableSquares(whenShifting square: ShiftSquare) -> Set<ShiftSquare> {
-        switch shiftableDirection(of: square) {
-        case .none:
-            return []
-        case .up:
-            return squares.filter({ $0.column == square.column && $0.row <= square.row && $0.row > emptySquare.row})
-        case .down:
-            return squares.filter({  $0.column == square.column && $0.row >= square.row && $0.row < emptySquare.row })
-        case .left:
-            return squares.filter({  $0.row == square.row && $0.column <= square.column && $0.column > emptySquare.column })
-        case .right:
-            return squares.filter({  $0.row == square.row && $0.column >= square.column && $0.column < emptySquare.column })
-        }
-    }
-    
-    func shift(_ square: ShiftSquare) {
-        shiftableSquares(whenShifting: square).forEach({
-            switch shiftableDirection(of: square) {
-            case .up:
-                $0.row -= 1
-            case .down:
-                $0.row += 1
-            case .left:
-                $0.column -= 1
-            case .right:
-                $0.column += 1
-            case .none:
-                break
-            }
-        })
 
-        emptySquare = square.position
+    func shiftableSquares(whenShifting square: ShiftSquare) -> Set<ShiftSquare> {
+        Set(squares.filter({ $0.position.isBetween(a: square.position, b: emptyPosition) }))
+    }
+
+    func shift(_ square: ShiftSquare) {
+        let direction = shiftableDirection(of: square)
+        let shiftableSquares = self.shiftableSquares(whenShifting: square)
+        if shiftableSquares.contains(square) {
+            squares = Set(squares.map({
+                shiftableSquares.contains($0) ? $0.shifting(direction) : $0
+            }))
+            emptyPosition = square.position
+        }
     }
 }

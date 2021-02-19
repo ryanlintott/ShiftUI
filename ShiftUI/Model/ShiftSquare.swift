@@ -7,65 +7,27 @@
 
 import Foundation
 
-struct Position: Equatable, Hashable, Comparable {
-    let row: Int
-    let column: Int
-    
-    static func < (lhs: Position, rhs: Position) -> Bool {
-        lhs.row < rhs.row || (lhs.row == rhs.row && lhs.column < rhs.column)
-    }
-}
-
-enum Direction {
-    case up, down, left, right, none
-}
-
-class ShiftSquare: Hashable, Comparable, Identifiable {
-    var column: Int
-    var row: Int
-    var shiftableDirections: Set<Direction> = []
+struct ShiftSquare: Hashable, Comparable, Identifiable {
+    var position: Position
     let solvedPosition: Position
-    let board: ShiftBoard
     
-    init(board: ShiftBoard, solvedPosition: Position) {
-        self.board = board
+    init(position: Position? = nil, solvedPosition: Position) {
+        self.position = position ?? solvedPosition
         self.solvedPosition = solvedPosition
-        self.column = solvedPosition.column
-        self.row = solvedPosition.row
     }
     
-    var position: Position {
-        Position(row: row, column: column)
+    func changingPosition(to newPosition: Position) -> ShiftSquare {
+        ShiftSquare(position: newPosition, solvedPosition: solvedPosition)
     }
     
-    var shiftableDirection: Direction {
-        if board.emptySquare.row == row {
-            return board.emptySquare.column < column ? .left : .right
-        } else if board.emptySquare.column == column {
-            return board.emptySquare.row < row ? .up : .down
-        } else {
-            return .none
-        }
+    mutating func shift(_ direction: Direction) {
+        self = changingPosition(to: position.shifting(direction: direction))
     }
     
-    func shiftableDirection(on board: ShiftBoard) -> Direction {
-        if board.emptySquare.row == row {
-            return board.emptySquare.column < column ? .left : .right
-        } else if board.emptySquare.column == column {
-            return board.emptySquare.row < row ? .up : .down
-        } else {
-            return .none
-        }
+    func shifting(_ direction: Direction) -> ShiftSquare {
+        changingPosition(to: position.shifting(direction: direction))
     }
-    
-    func shift(on board: ShiftBoard) {
-        board.shift(self)
-    }
-    
-    func shift() {
-        board.shift(self)
-    }
-    
+
     var id: Position {
         solvedPosition
     }
@@ -74,8 +36,11 @@ class ShiftSquare: Hashable, Comparable, Identifiable {
         hasher.combine(id)
     }
     
-    static func == (lhs: ShiftSquare, rhs: ShiftSquare) -> Bool {
-        lhs.solvedPosition == rhs.solvedPosition
+    var log: String {
+        """
+    number \(position.row) \(position.column)
+    position \(solvedPosition.row) \(solvedPosition.column)
+    """
     }
     
     static func < (lhs: ShiftSquare, rhs: ShiftSquare) -> Bool {

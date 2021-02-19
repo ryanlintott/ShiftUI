@@ -7,14 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF0EE75625E07EFD002B3601 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A2525E04B6A0065B8B1 /* BoardView.swift */; };
 		CF434A0625E025BD0065B8B1 /* ShiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A0525E025BD0065B8B1 /* ShiftUIApp.swift */; };
 		CF434A0825E025BD0065B8B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A0725E025BD0065B8B1 /* ContentView.swift */; };
 		CF434A0A25E025BE0065B8B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF434A0925E025BE0065B8B1 /* Assets.xcassets */; };
 		CF434A0D25E025BE0065B8B1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF434A0C25E025BE0065B8B1 /* Preview Assets.xcassets */; };
 		CF434A1725E02A4F0065B8B1 /* ShiftBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A1625E02A4F0065B8B1 /* ShiftBoard.swift */; };
 		CF434A1B25E047BC0065B8B1 /* ShiftSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A1A25E047BC0065B8B1 /* ShiftSquare.swift */; };
-		CF434A2625E04B6A0065B8B1 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A2525E04B6A0065B8B1 /* BoardView.swift */; };
 		CF434A2925E054B60065B8B1 /* BoardPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A2825E054B60065B8B1 /* BoardPosition.swift */; };
+		CFEDD56225E079AE00553F25 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEDD56125E079AE00553F25 /* Position.swift */; };
+		CFEDD56525E079CB00553F25 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEDD56425E079CB00553F25 /* Direction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		CF434A1A25E047BC0065B8B1 /* ShiftSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftSquare.swift; sourceTree = "<group>"; };
 		CF434A2525E04B6A0065B8B1 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		CF434A2825E054B60065B8B1 /* BoardPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPosition.swift; sourceTree = "<group>"; };
+		CFEDD56125E079AE00553F25 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		CFEDD56425E079CB00553F25 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,8 @@
 				CF434A1625E02A4F0065B8B1 /* ShiftBoard.swift */,
 				CF434A2825E054B60065B8B1 /* BoardPosition.swift */,
 				CF434A1A25E047BC0065B8B1 /* ShiftSquare.swift */,
+				CFEDD56125E079AE00553F25 /* Position.swift */,
+				CFEDD56425E079CB00553F25 /* Direction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -166,10 +172,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFEDD56225E079AE00553F25 /* Position.swift in Sources */,
 				CF434A1725E02A4F0065B8B1 /* ShiftBoard.swift in Sources */,
 				CF434A1B25E047BC0065B8B1 /* ShiftSquare.swift in Sources */,
-				CF434A2625E04B6A0065B8B1 /* BoardView.swift in Sources */,
+				CFEDD56525E079CB00553F25 /* Direction.swift in Sources */,
 				CF434A2925E054B60065B8B1 /* BoardPosition.swift in Sources */,
+				CF0EE75625E07EFD002B3601 /* BoardView.swift in Sources */,
 				CF434A0825E025BD0065B8B1 /* ContentView.swift in Sources */,
 				CF434A0625E025BD0065B8B1 /* ShiftUIApp.swift in Sources */,
 			);
