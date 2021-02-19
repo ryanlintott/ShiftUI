@@ -11,6 +11,8 @@
 		CF434A0825E025BD0065B8B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A0725E025BD0065B8B1 /* ContentView.swift */; };
 		CF434A0A25E025BE0065B8B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF434A0925E025BE0065B8B1 /* Assets.xcassets */; };
 		CF434A0D25E025BE0065B8B1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF434A0C25E025BE0065B8B1 /* Preview Assets.xcassets */; };
+		CF434A1725E02A4F0065B8B1 /* ShiftBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A1625E02A4F0065B8B1 /* ShiftBoard.swift */; };
+		CF434A1B25E047BC0065B8B1 /* ShiftSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A1A25E047BC0065B8B1 /* ShiftSquare.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		CF434A0925E025BE0065B8B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF434A0C25E025BE0065B8B1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CF434A0E25E025BE0065B8B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF434A1625E02A4F0065B8B1 /* ShiftBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftBoard.swift; sourceTree = "<group>"; };
+		CF434A1A25E047BC0065B8B1 /* ShiftSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftSquare.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 			children = (
 				CF434A0525E025BD0065B8B1 /* ShiftUIApp.swift */,
 				CF434A0725E025BD0065B8B1 /* ContentView.swift */,
+				CF434A1525E02A110065B8B1 /* Model */,
 				CF434A0925E025BE0065B8B1 /* Assets.xcassets */,
 				CF434A0E25E025BE0065B8B1 /* Info.plist */,
 				CF434A0B25E025BE0065B8B1 /* Preview Content */,
@@ -67,6 +72,15 @@
 				CF434A0C25E025BE0065B8B1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CF434A1525E02A110065B8B1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CF434A1625E02A4F0065B8B1 /* ShiftBoard.swift */,
+				CF434A1A25E047BC0065B8B1 /* ShiftSquare.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +152,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF434A1725E02A4F0065B8B1 /* ShiftBoard.swift in Sources */,
+				CF434A1B25E047BC0065B8B1 /* ShiftSquare.swift in Sources */,
 				CF434A0825E025BD0065B8B1 /* ContentView.swift in Sources */,
 				CF434A0625E025BD0065B8B1 /* ShiftUIApp.swift in Sources */,
 			);
