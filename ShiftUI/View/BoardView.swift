@@ -9,10 +9,10 @@ import SwiftUI
 
 struct BoardView: View {
     
-    @StateObject var board: ShiftBoard = ShiftBoard(columns: 6, rows: 10)
+    @StateObject var board: ShiftBoard = ShiftBoard(columns: 4, rows: 4)
     
-    let columns = 6
-    let rows = 10
+    let columns = 4
+    let rows = 4
     let boardWidth: CGFloat = 300
     var tileSize: CGFloat {
         boardWidth / CGFloat(columns)
@@ -22,27 +22,23 @@ struct BoardView: View {
     }
     
     var gridColumns: [GridItem] {
-        Array<GridItem>.init(repeating: GridItem(.fixed(tileSize), spacing: 0), count: columns)
+        Array<GridItem>.init(
+          repeating: GridItem(.fixed(tileSize), spacing: 10),
+          count: columns
+        )
     }
     
     var body: some View {
-        LazyVGrid(columns: gridColumns, alignment: .center, spacing: 0) {
+        LazyVGrid(columns: gridColumns, alignment: .center, spacing: 10) {
             ForEach(board.positions.sorted()) { position in
                 VStack {
                     switch position {
                     case let .occupied(square):
-                        Color.blue
-                            .overlay(
-                                Text("\(number(of: square))")
-                                    .foregroundColor(.white)
-                            )
-                            .background(Color.blue)
-                            .cornerRadius(5)
-                            .onTapGesture {
-                                withAnimation {
-                                    board.shift(square)
-                                }
-                            }
+                      TileButton(data: number(of: square)) {
+                        withAnimation {
+                            board.shift(square)
+                        }
+                      }
                     case .empty:
                         Color.clear
                     }
