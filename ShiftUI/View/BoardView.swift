@@ -9,55 +9,72 @@ import SwiftUI
 
 struct BoardView: View {
     
-    @StateObject var board: ShiftBoard = ShiftBoard(columns: 3, rows: 4)
+    @StateObject var board: ShiftBoard = ShiftBoard(columns: 6, rows: 10)
     
-    let size: CGFloat = 100
+    let columns = 6
+    let rows = 10
+    let boardWidth: CGFloat = 300
+    var tileSize: CGFloat {
+        boardWidth / CGFloat(columns)
+    }
+    var boardHeight: CGFloat {
+        tileSize * CGFloat(rows)
+    }
     
     var gridColumns: [GridItem] {
-        Array<GridItem>.init(repeating: GridItem(.fixed(size)), count: 3)
+        Array<GridItem>.init(repeating: GridItem(.fixed(tileSize), spacing: 0), count: columns)
     }
     
     var body: some View {
-        LazyVGrid(columns: gridColumns, alignment: .center, spacing: nil) {
+        LazyVGrid(columns: gridColumns, alignment: .center, spacing: 0) {
             ForEach(board.positions.sorted()) { position in
-                switch position {
-                case let .occupied(square):
-                    Text("\(square.log)")
-                        .frame(width: size, height: size)
-                        .background(color(for: square.position.direction(to: board.emptyPosition)))
-                        .onTapGesture {
-                            withAnimation {
-                                board.shift(square)
+                VStack {
+                    switch position {
+                    case let .occupied(square):
+                        Color.blue
+                            .overlay(
+                                Text("\(number(of: square))")
+                                    .foregroundColor(.white)
+                            )
+                            .background(Color.blue)
+                            .cornerRadius(5)
+                            .onTapGesture {
+                                withAnimation {
+                                    board.shift(square)
+                                }
                             }
-                        }
-                case .empty:
-                    Text("Empty")
-                        .font(.caption2)
-                        .frame(width: size, height: size)
+                    case .empty:
+                        Color.clear
+                    }
                 }
+                .padding(1)
+                .frame(width: tileSize, height: tileSize)
             }
         }
+    }
+    
+    func number(of square: ShiftSquare) -> Int {
+        (square.solvedPosition.row - 1) * board.totalColumns + square.solvedPosition.column
+    }
         
-//        VStack {
-//            ForEach(1..<board.totalRows + 1) { row in
-//                HStack {
-//                    ForEach(board.row(row)) { position in
-//                        switch position {
-//                        case let .occupied(square):
-//                            Text("\(square.solvedPosition.column) x \(square.solvedPosition.row)")
-//                                .frame(width: 40, height: 40)
-//                                .background(color(for: square.shiftableDirection))
-//                                .onTapGesture {
-//                                    board.shift(square)
-//                                }
-//                        case let .empty(emptyPosition):
-//                            Text("\(emptyPosition.column)|\(emptyPosition.row)")
-//                                .frame(width: 40, height: 40)
-//                        }
-//                    }
-//                }
-//            }
-//        }
+    func debugView(boardPosition: BoardPosition) -> some View {
+        VStack {
+            switch boardPosition {
+            case let .occupied(square):
+                Text("\(square.log)")
+                    .background(color(for: square.position.direction(to: board.emptyPosition)))
+                    .onTapGesture {
+                        withAnimation {
+                            board.shift(square)
+                        }
+                    }
+            case .empty:
+                Text("Empty")
+                    .font(.caption2)
+            }
+        }
+        .padding()
+        .frame(width: tileSize, height: tileSize)
     }
     
     func color(for direction: Direction) -> Color {
