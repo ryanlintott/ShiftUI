@@ -8,5 +8,5 @@
 import Foundation
 
 enum Direction {
-    case up, down, left, right, none
+  case up, down, left, right, none
 }

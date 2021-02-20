@@ -8,42 +8,42 @@
 import Foundation
 
 struct ShiftSquare: Hashable, Comparable, Identifiable {
-    var position: Position
-    let solvedPosition: Position
-    
-    init(position: Position? = nil, solvedPosition: Position) {
-        self.position = position ?? solvedPosition
-        self.solvedPosition = solvedPosition
-    }
-    
-    func changingPosition(to newPosition: Position) -> ShiftSquare {
-        ShiftSquare(position: newPosition, solvedPosition: solvedPosition)
-    }
-    
-    mutating func shift(_ direction: Direction) {
-        self = changingPosition(to: position.shifting(direction: direction))
-    }
-    
-    func shifting(_ direction: Direction) -> ShiftSquare {
-        changingPosition(to: position.shifting(direction: direction))
-    }
-
-    var id: Position {
-        solvedPosition
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
-    var log: String {
-        """
+  var position: Position
+  let solvedPosition: Position
+  
+  init(position: Position? = nil, solvedPosition: Position) {
+    self.position = position ?? solvedPosition
+    self.solvedPosition = solvedPosition
+  }
+  
+  func changingPosition(to newPosition: Position) -> ShiftSquare {
+    ShiftSquare(position: newPosition, solvedPosition: solvedPosition)
+  }
+  
+  mutating func shift(_ direction: Direction) {
+    self = changingPosition(to: position.shifting(direction: direction))
+  }
+  
+  func shifting(_ direction: Direction) -> ShiftSquare {
+    changingPosition(to: position.shifting(direction: direction))
+  }
+  
+  var id: Position {
+    solvedPosition
+  }
+  
+  func hash(into hasher: inout Hasher) {
+    hasher.combine(id)
+  }
+  
+  var log: String {
+    """
     number \(position.row) \(position.column)
     position \(solvedPosition.row) \(solvedPosition.column)
     """
-    }
-    
-    static func < (lhs: ShiftSquare, rhs: ShiftSquare) -> Bool {
-        lhs.position < rhs.position
-    }
+  }
+  
+  static func < (lhs: ShiftSquare, rhs: ShiftSquare) -> Bool {
+    lhs.position < rhs.position
+  }
 }
