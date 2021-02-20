@@ -13,9 +13,11 @@
 		89DCCB4625E0EEA500861A66 /* TileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DCCB4525E0EEA500861A66 /* TileButton.swift */; };
 		89DCCB4B25E0FDC400861A66 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DCCB4A25E0FDC400861A66 /* Color+Extension.swift */; };
 		89DCCB4F25E0FDD100861A66 /* Gradient+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DCCB4E25E0FDD100861A66 /* Gradient+Extension.swift */; };
+		89EE975225E167D40011E694 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EE975125E167D40011E694 /* WelcomeView.swift */; };
+		89EE975525E1744F0011E694 /* NavigationBarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EE975425E1744F0011E694 /* NavigationBarColor.swift */; };
 		CF0EE75625E07EFD002B3601 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A2525E04B6A0065B8B1 /* BoardView.swift */; };
 		CF434A0625E025BD0065B8B1 /* ShiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A0525E025BD0065B8B1 /* ShiftUIApp.swift */; };
-		CF434A0825E025BD0065B8B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A0725E025BD0065B8B1 /* ContentView.swift */; };
+		CF434A0825E025BD0065B8B1 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A0725E025BD0065B8B1 /* GameView.swift */; };
 		CF434A0A25E025BE0065B8B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF434A0925E025BE0065B8B1 /* Assets.xcassets */; };
 		CF434A0D25E025BE0065B8B1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF434A0C25E025BE0065B8B1 /* Preview Assets.xcassets */; };
 		CF434A1725E02A4F0065B8B1 /* ShiftBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A1625E02A4F0065B8B1 /* ShiftBoard.swift */; };
@@ -32,9 +34,11 @@
 		89DCCB4525E0EEA500861A66 /* TileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileButton.swift; sourceTree = "<group>"; };
 		89DCCB4A25E0FDC400861A66 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		89DCCB4E25E0FDD100861A66 /* Gradient+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gradient+Extension.swift"; sourceTree = "<group>"; };
+		89EE975125E167D40011E694 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		89EE975425E1744F0011E694 /* NavigationBarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarColor.swift; sourceTree = "<group>"; };
 		CF434A0225E025BD0065B8B1 /* ShiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF434A0525E025BD0065B8B1 /* ShiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftUIApp.swift; sourceTree = "<group>"; };
-		CF434A0725E025BD0065B8B1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CF434A0725E025BD0065B8B1 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CF434A0925E025BE0065B8B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF434A0C25E025BE0065B8B1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CF434A0E25E025BE0065B8B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,6 +66,7 @@
 			children = (
 				89DCCB4A25E0FDC400861A66 /* Color+Extension.swift */,
 				89DCCB4E25E0FDD100861A66 /* Gradient+Extension.swift */,
+				89EE975425E1744F0011E694 /* NavigationBarColor.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -87,7 +92,7 @@
 			children = (
 				89DCCB4925E0FDAB00861A66 /* Extension */,
 				CF434A0525E025BD0065B8B1 /* ShiftUIApp.swift */,
-				CF434A0725E025BD0065B8B1 /* ContentView.swift */,
+				CF434A0725E025BD0065B8B1 /* GameView.swift */,
 				CF434A1525E02A110065B8B1 /* Model */,
 				CF434A1F25E04B4A0065B8B1 /* View */,
 				CF434A0925E025BE0065B8B1 /* Assets.xcassets */,
@@ -125,6 +130,7 @@
 				896B1FB425E1127C00D8A818 /* SuccessView.swift */,
 				896B1FB725E12D8700D8A818 /* NeumorphicShadow.swift */,
 				896B1FBA25E1348400D8A818 /* ResultView.swift */,
+				89EE975125E167D40011E694 /* WelcomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -205,11 +211,13 @@
 				896B1FB525E1127C00D8A818 /* SuccessView.swift in Sources */,
 				896B1FBB25E1348400D8A818 /* ResultView.swift in Sources */,
 				CFEDD56525E079CB00553F25 /* Direction.swift in Sources */,
+				89EE975525E1744F0011E694 /* NavigationBarColor.swift in Sources */,
 				896B1FB825E12D8700D8A818 /* NeumorphicShadow.swift in Sources */,
 				89DCCB4625E0EEA500861A66 /* TileButton.swift in Sources */,
 				CF434A2925E054B60065B8B1 /* BoardPosition.swift in Sources */,
+				89EE975225E167D40011E694 /* WelcomeView.swift in Sources */,
 				CF0EE75625E07EFD002B3601 /* BoardView.swift in Sources */,
-				CF434A0825E025BD0065B8B1 /* ContentView.swift in Sources */,
+				CF434A0825E025BD0065B8B1 /* GameView.swift in Sources */,
 				89DCCB4F25E0FDD100861A66 /* Gradient+Extension.swift in Sources */,
 				CF434A0625E025BD0065B8B1 /* ShiftUIApp.swift in Sources */,
 			);
