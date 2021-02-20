@@ -22,6 +22,7 @@ class ShiftBoard: ObservableObject {
   }
   
   func createBoard() {
+    squares = []
     for row in 1...totalRows {
       for column in 1...totalColumns {
         let squarePosition = Position(row: row, column: column)

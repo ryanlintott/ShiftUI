@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ResultView: View {
+  @Environment(\.presentationMode) var presentationMode
+  
   let score: Int
   
   var body: some View {
@@ -15,6 +17,11 @@ struct ResultView: View {
       Color.offWhite.edgesIgnoringSafeArea(.all)
       
       VStack {
+        Button("Restart") {
+          // need to dismiss all views back to the root here
+          presentationMode.wrappedValue.dismiss()
+        }
+        
         Spacer()
         
         Text("Winner Winner\nChicken Dinner...!")
@@ -35,6 +42,8 @@ struct ResultView: View {
 
 struct ResultView_Previews: PreviewProvider {
   static var previews: some View {
-    ResultView(score: 343)
+    NavigationView {
+      ResultView(score: 343)
+    }
   }
 }

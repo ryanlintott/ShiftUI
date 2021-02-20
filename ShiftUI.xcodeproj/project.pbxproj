@@ -94,7 +94,6 @@
 			children = (
 				89DCCB4925E0FDAB00861A66 /* Extension */,
 				CF434A0525E025BD0065B8B1 /* ShiftUIApp.swift */,
-				CF434A0725E025BD0065B8B1 /* GameView.swift */,
 				CF434A1525E02A110065B8B1 /* Model */,
 				CF434A1F25E04B4A0065B8B1 /* View */,
 				CF434A0925E025BE0065B8B1 /* Assets.xcassets */,
@@ -127,13 +126,14 @@
 		CF434A1F25E04B4A0065B8B1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				89EE975125E167D40011E694 /* WelcomeView.swift */,
+				CF434A0725E025BD0065B8B1 /* GameView.swift */,
+				896B1FBA25E1348400D8A818 /* ResultView.swift */,
 				CF434A2525E04B6A0065B8B1 /* BoardView.swift */,
 				89DCCB4525E0EEA500861A66 /* TileButton.swift */,
 				CF00009025E1719E00B103C4 /* ShiftTile.swift */,
 				896B1FB425E1127C00D8A818 /* SuccessView.swift */,
 				896B1FB725E12D8700D8A818 /* NeumorphicShadow.swift */,
-				896B1FBA25E1348400D8A818 /* ResultView.swift */,
-				89EE975125E167D40011E694 /* WelcomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

@@ -36,44 +36,10 @@ extension Shape {
       .shadow(color: Color.black.opacity(0.2).opacity(height >= 0 ? 1 : 0), radius: height.magnitude, x: height, y: height)
       .shadow(color: Color.white.opacity(0.7).opacity(height >= 0 ? 1 : 0), radius: height.magnitude, x: -height, y: -height)
   }
-
-  func neumorphicShadowSelected() -> some View {
-    let shape1 = self
-    let shape2 = self
-    let shape3 = self
-    let shape4 = self
-
-    return self
-      .fill(Color.offWhite)
-      .overlay(
-        shape1
-          .stroke(Color.gray, lineWidth: 4)
-          .blur(radius: 4)
-          .offset(x: 2, y: 2)
-          .mask(
-            shape2
-              .fill(LinearGradient(Color.black, Color.clear))
-          )
-      )
-      .overlay(
-        shape3
-          .stroke(Color.white, lineWidth: 8)
-          .blur(radius: 4)
-          .offset(x: -2, y: -2)
-          .mask(
-            shape4
-              .fill(LinearGradient(Color.clear, Color.black))
-          )
-      )
-  }
-
-  @ViewBuilder
+  
   func neumorphic(for isPressed: Bool) -> some View {
-    if isPressed {
-      self.neumorphicShadowSelected()
-    } else {
-      self.neumorphicShadow()
-    }
+    self
+      .neumorphicShadow(height: isPressed ? -4 : 5)
   }
 }
 

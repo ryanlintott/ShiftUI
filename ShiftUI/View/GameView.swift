@@ -49,7 +49,7 @@ struct GameView: View {
     .foregroundColor(.grayText)
     .navigationBarBackButtonHidden(true)
     .navigationBarItems(
-      trailing: Button{
+      trailing: Button {
         presentationMode.wrappedValue.dismiss()
       } label: {
         Image(systemName: "xmark.circle")

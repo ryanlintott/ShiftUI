@@ -34,21 +34,21 @@ struct WelcomeView: View {
 
           HStack(spacing: 20) {
             RoundedRectangle(cornerRadius: 10)
-              .neumorphic(for: difficultyLevel == 3)
+              .neumorphicShadow(height: difficultyLevel == 3 ? -4 : 4)
               .overlay(Text("Easy"))
               .frame(width: 100, height: 60)
               .onTapGesture { difficultyLevel = 3 }
 
 
             RoundedRectangle(cornerRadius: 10)
-              .neumorphic(for: difficultyLevel == 4)
+              .neumorphicShadow(height: difficultyLevel == 4 ? -4 : 4)
               .overlay(Text("Normal"))
               .frame(width: 100, height: 60)
               .onTapGesture { difficultyLevel = 4 }
 
 
             RoundedRectangle(cornerRadius: 10)
-              .neumorphic(for: difficultyLevel == 5)
+              .neumorphicShadow(height: difficultyLevel == 5 ? -4 : 4)
               .overlay(Text("Difficult"))
               .frame(width: 100, height: 60)
               .onTapGesture { difficultyLevel = 5 }
