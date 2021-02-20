@@ -24,15 +24,8 @@ struct TileButtonStyle: ButtonStyle {
 
   func makeBody(configuration: Configuration) -> some View {
     ZStack {
-      Group {
-        if configuration.isPressed {
-          RoundedRectangle(cornerRadius: cornerRadius)
-            .neumorphicShadowSelected()
-        } else {
-          RoundedRectangle(cornerRadius: cornerRadius)
-            .neumorphicShadow()
-        }
-      }
+      RoundedRectangle(cornerRadius: cornerRadius)
+        .neumorphicShadow(height: configuration.isPressed ? -4 : 5)
 
       configuration.label
     }

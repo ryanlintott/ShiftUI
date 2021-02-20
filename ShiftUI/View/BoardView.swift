@@ -39,7 +39,7 @@ struct BoardView: View {
           switch position {
           case let .occupied(square):
             TileButton(data: number(of: square)) {
-              withAnimation {
+              withAnimation(Animation.easeInOut(duration: 1)) {
                 board.shift(square)
               }
             }
@@ -58,41 +58,6 @@ struct BoardView: View {
   
   func number(of square: ShiftSquare) -> Int {
     (square.solvedPosition.row - 1) * board.totalColumns + square.solvedPosition.column
-  }
-  
-  func debugView(boardPosition: BoardPosition) -> some View {
-    VStack {
-      switch boardPosition {
-      case let .occupied(square):
-        Text("\(square.log)")
-          .background(color(for: square.position.direction(to: board.emptyPosition)))
-          .onTapGesture {
-            withAnimation {
-              board.shift(square)
-            }
-          }
-      case .empty:
-        Text("Empty")
-          .font(.caption2)
-      }
-    }
-    .padding()
-    .frame(width: tileSize, height: tileSize)
-  }
-  
-  func color(for direction: Direction) -> Color {
-    switch direction {
-    case .up:
-      return .blue
-    case .down:
-      return .green
-    case .left:
-      return .red
-    case .right:
-      return .yellow
-    case .none:
-      return .gray
-    }
   }
 }
 
