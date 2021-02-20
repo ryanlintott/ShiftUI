@@ -33,8 +33,8 @@ extension Shape {
           }
           .opacity(height < 0 ? 1 : 0)
       )
-      .shadow(color: Color.black.opacity(0.2).opacity(height > 0 ? 1 : 0), radius: height.magnitude, x: height, y: height)
-      .shadow(color: Color.white.opacity(0.7).opacity(height > 0 ? 1 : 0), radius: height.magnitude, x: -height, y: -height)
+      .shadow(color: Color.black.opacity(0.2).opacity(height >= 0 ? 1 : 0), radius: height.magnitude, x: height, y: height)
+      .shadow(color: Color.white.opacity(0.7).opacity(height >= 0 ? 1 : 0), radius: height.magnitude, x: -height, y: -height)
   }
 }
 
@@ -78,38 +78,55 @@ extension View {
         .mask(self)
         .opacity(height < 0 ? 1 : 0)
       )
-      .shadow(color: Color.black.opacity(0.2).opacity(height > 1 ? 1 : 0), radius: height.magnitude, x: height, y: height)
-      .shadow(color: Color.white.opacity(0.7).opacity(height > 1 ? 1 : 0), radius: height.magnitude, x: -height, y: -height)
+      .shadow(color: Color.black.opacity(0.2).opacity(height >= 0 ? 1 : 0), radius: height.magnitude, x: height, y: height)
+      .shadow(color: Color.white.opacity(0.7).opacity(height >= 0 ? 1 : 0), radius: height.magnitude, x: -height, y: -height)
   }
 }
 
 struct NeumorphicShadow_Previews: PreviewProvider {
-  static var previews: some View {
-    VStack {
-
-      Circle()
-        .fill(Color.offWhite)
-        .neumorphicShadow(height: -10)
+  struct PreviewData: View {
+    @State private var height: CGFloat = 0
+    
+    var body: some View {
+      VStack {
+        ZStack {
+          Capsule()
+            .fill(Color.offWhite)
+            .frame(width: 50)
+          
+          Capsule()
+            .fill(Color.offWhite)
+            .frame(height: 50)
+        }
+        .clipped()
+        .neumorphicShadow(height: height)
         .padding(50)
-      
-      Text("Hello World")
-        .font(.title)
-        .bold()
-        .foregroundColor(Color.grayText)
-        .neumorphicShadow(height: 2)
-      
-      Text("Hello World")
-        .font(.title)
-        .bold()
-        .foregroundColor(Color.grayText)
-        .neumorphicShadow(height: -0.5)
-      
-      Circle()
-        .neumorphicShadow(height: -10)
-        .padding(50)
-      
+          
+        
+        Text("Hello World")
+          .font(.system(size: 60))
+          .bold()
+          .foregroundColor(Color.offWhite)
+          .neumorphicShadow(height: height / 4)
+        
+        Image(systemName: "hand.thumbsup.fill")
+          .font(.system(size: 60))
+          .foregroundColor(.offWhite)
+          .neumorphicShadow(height: height / 4)
+        
+        Circle()
+          .neumorphicShadow(height: height)
+          .padding(50)
+        
+        Slider(value: $height, in: -20...20)
+          .padding()
+      }
+      .background(Color.offWhite.edgesIgnoringSafeArea(.all))
     }
-    .background(Color.offWhite.edgesIgnoringSafeArea(.all))
+  }
+  
+  static var previews: some View {
+    PreviewData()
   }
 }
 
