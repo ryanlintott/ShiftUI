@@ -8,13 +8,13 @@
 import Foundation
 
 class ShiftBoard: ObservableObject {
-  let totalColumns: Int
-  let totalRows: Int
+  private(set) var totalColumns: Int = 4
+  private(set) var totalRows: Int = 4
   
   @Published var squares: Set<ShiftSquare> = []
-  @Published var emptyPosition: Position
+  @Published var emptyPosition: Position = Position(row: 4, column: 4)
   
-  init(columns: Int, rows: Int) {
+  func initBoard(columns: Int, rows: Int) {
     self.totalColumns = columns
     self.totalRows = rows
     self.emptyPosition = Position(row: rows, column: columns)
