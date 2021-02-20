@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct BoardView: View {
+  @StateObject var board: ShiftBoard = ShiftBoard()
   
-  @StateObject var board: ShiftBoard = ShiftBoard(columns: 4, rows: 4)
-  
-  let columns = 4
-  let rows = 4
+  let columns: Int
+  let rows: Int
   let boardWidth: CGFloat = 300
   var tileSize: CGFloat {
     boardWidth / CGFloat(columns)
@@ -26,6 +25,11 @@ struct BoardView: View {
       repeating: GridItem(.fixed(tileSize), spacing: 10),
       count: columns
     )
+  }
+
+  init(level: Int) {
+    self.columns = level
+    self.rows = level
   }
   
   var body: some View {
@@ -47,6 +51,9 @@ struct BoardView: View {
         .frame(width: tileSize, height: tileSize)
       }
     }
+    .onAppear{
+      board.initBoard(columns: columns, rows: rows)
+    }
   }
   
   func number(of square: ShiftSquare) -> Int {
@@ -56,9 +63,6 @@ struct BoardView: View {
 
 struct BoardView_Previews: PreviewProvider {
   static var previews: some View {
-    Color.offWhite.edgesIgnoringSafeArea(.all)
-      .overlay(
-        BoardView()
-      )
+    BoardView(level: 4)
   }
 }
