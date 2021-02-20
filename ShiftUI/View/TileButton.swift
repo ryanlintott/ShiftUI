@@ -25,33 +25,8 @@ struct TileButtonStyle: ButtonStyle {
   func makeBody(configuration: Configuration) -> some View {
     ZStack {
       Group {
-        if configuration.isPressed {
-          RoundedRectangle(cornerRadius: cornerRadius)
-            .fill(Color.offWhite)
-            .overlay(
-              RoundedRectangle(cornerRadius: cornerRadius)
-                .stroke(Color.gray, lineWidth: 4)
-                .blur(radius: 4)
-                .offset(x: 2, y: 2)
-                .mask(
-                  RoundedRectangle(cornerRadius: cornerRadius)
-                    .fill(LinearGradient(Color.black, Color.clear))
-                )
-            )
-            .overlay(
-              RoundedRectangle(cornerRadius: cornerRadius)
-                .stroke(Color.white, lineWidth: 8)
-                .blur(radius: 4)
-                .offset(x: -2, y: -2)
-                .mask(
-                  RoundedRectangle(cornerRadius: cornerRadius)
-                    .fill(LinearGradient(Color.clear, Color.black))
-                )
-            )
-        } else {
-          RoundedRectangle(cornerRadius: cornerRadius)
-            .neumorphicShadow()
-        }
+        RoundedRectangle(cornerRadius: cornerRadius)
+          .neumorphicShadow(height: configuration.isPressed ? -4 : 5)
       }
 
       configuration.label
