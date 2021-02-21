@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
+import CoreHaptics
 
 struct ShiftableView<Content: View>: View {
   @EnvironmentObject var board: ShiftBoard
+  
   let square: ShiftSquare
   let tileSize: CGFloat
   let content: (Bool) -> Content
 
   @State private var predictedDragOffset: CGSize = .zero
   @GestureState private var isDragging: Bool = false
+  @State private var engine: CHHapticEngine?
 
   var body: some View {
     content(isDragging)
@@ -22,14 +25,47 @@ struct ShiftableView<Content: View>: View {
       .gesture(shiftGesture)
       .onChange(of: isDragging) { isDragging in
         if isDragging {
-          // nothing
+          prepareHaptics()
         } else {
           withAnimation(Animation.spring(response: 0.1, dampingFraction: 0.95, blendDuration: 0.5)) {
             board.dragEnded(finalAmount: dragAmount(predictedDragOffset))
           }
+          playHaptic()
         }
         predictedDragOffset = .zero
       }
+  }
+  
+  func prepareHaptics() {
+    guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
+    
+    do {
+      self.engine = try CHHapticEngine()
+      try engine?.start()
+    } catch {
+      print("There was an error creating the engine: \(error.localizedDescription)")
+    }
+  }
+  
+  func playHaptic() {
+    // make sure that the device supports haptics
+    guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
+    var events = [CHHapticEvent]()
+    
+    // create one intense, sharp tap
+    let intensity = CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.5)
+    let sharpness = CHHapticEventParameter(parameterID: .hapticSharpness, value: 1)
+    let event = CHHapticEvent(eventType: .hapticTransient, parameters: [intensity, sharpness], relativeTime: 0)
+    events.append(event)
+    
+    // convert those events into a pattern and play it immediately
+    do {
+      let pattern = try CHHapticPattern(events: events, parameters: [])
+      let player = try engine?.makePlayer(with: pattern)
+      try player?.start(atTime: 0)
+    } catch {
+      print("Failed to play pattern: \(error.localizedDescription).")
+    }
   }
   
   var tileOffset: CGSize {
