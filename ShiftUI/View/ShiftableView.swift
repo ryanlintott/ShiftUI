@@ -59,7 +59,7 @@ struct ShiftableView<Content: View>: View {
   }
   
   var shiftGesture: some Gesture {
-    DragGesture()
+    DragGesture(minimumDistance: 0)
       .updating($isDragging) { value, gestureState, transaction in
         gestureState = true
       }

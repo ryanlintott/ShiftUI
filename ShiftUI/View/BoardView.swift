@@ -10,8 +10,6 @@ import SwiftUI
 struct BoardView: View {
   @EnvironmentObject var board: ShiftBoard
   
-//  let columns: Int
-//  let rows: Int
   let boardWidth: CGFloat = 300
   var tileSize: CGFloat {
     boardWidth / CGFloat(board.totalColumns)
@@ -35,7 +33,7 @@ struct BoardView: View {
           case let .occupied(square):
             ShiftableView(square: square, tileSize: tileSize) { isShifting in
               RoundedRectangle(cornerRadius: 5)
-                .neumorphicShadow(height: board.shiftingSquares.contains(square) ? -4 : 5)
+                .neumorphicShadow(height: board.shiftingSquares.contains(square) ? -4 : 4)
                 .overlay(
                   Text("\(number(of: square))")
                 )
@@ -60,6 +58,6 @@ struct BoardView_Previews: PreviewProvider {
   
   static var previews: some View {
     BoardView()
-      .environmentObject(ShiftBoard(level: .easy))
+      .environmentObject(ShiftBoard(level: .medium))
   }
 }

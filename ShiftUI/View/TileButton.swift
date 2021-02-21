@@ -21,11 +21,19 @@ struct TileButton: View {
 
 struct TileButtonStyle: ButtonStyle {
   let cornerRadius: CGFloat
+  let height: CGFloat
+  let pressedHeight: CGFloat
+  
+  init(cornerRadius: CGFloat = 5, height: CGFloat = 5, pressedHeight: CGFloat = -4) {
+    self.cornerRadius = cornerRadius
+    self.height = height
+    self.pressedHeight = pressedHeight
+  }
 
   func makeBody(configuration: Configuration) -> some View {
     ZStack {
       RoundedRectangle(cornerRadius: cornerRadius)
-        .neumorphicShadow(height: configuration.isPressed ? -4 : 5)
+        .neumorphicShadow(height: configuration.isPressed ? pressedHeight : height)
 
       configuration.label
     }

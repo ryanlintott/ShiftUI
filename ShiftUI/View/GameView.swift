@@ -26,19 +26,23 @@ struct GameView: View {
 
       VStack {
         Text("ShiftUI")
-          .font(.largeTitle)
-          .fontWeight(.bold)
+          .font(.system(size: 70))
+          .fontWeight(.black)
+          .neumorphicShadow(height: 3)
         
         HStack {
+          Text("Moves:")
           Spacer()
-          Text("Steps: 5")
-            .font(.title)
-            .padding()
-          Spacer()
+          Text("\(board.moves)")
+            .animation(nil)
         }
+        .font(.title)
+        .padding()
         .background(
-          RoundedRectangle(cornerRadius: 10).neumorphicShadow()
+          RoundedRectangle(cornerRadius: 10)
+            .neumorphicShadow(height: 2)
         )
+        .padding(.horizontal, 30)
         .padding(.all, 30)
         .onTapGesture { showResult.toggle() } // added for demo purpose only
         
@@ -60,7 +64,7 @@ struct GameView: View {
           .padding(.all, 8)
           .foregroundColor(.grayText)
       }
-      .buttonStyle(TileButtonStyle(cornerRadius: 4))
+      .buttonStyle(TileButtonStyle(cornerRadius: 4, height: 2, pressedHeight: -2))
     )
     .onAppear {
       board.initBoard(level: level)
@@ -71,7 +75,7 @@ struct GameView: View {
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
-      GameView(level: .easy)
+      GameView(level: .medium)
     }
   }
 }
