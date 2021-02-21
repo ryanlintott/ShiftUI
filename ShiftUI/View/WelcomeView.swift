@@ -8,62 +8,58 @@
 import SwiftUI
 
 struct WelcomeView: View {
-  @State private var difficultyLevel: Level = .medium
+  @EnvironmentObject var viewManager: ViewManager
+  @Binding var difficultyLevel: Level
 
   var body: some View {
-    NavigationView {
-      ZStack {
-        Color.offWhite.edgesIgnoringSafeArea(.all)
-
-        VStack {
-          Text("Welcome to ShiftUI")
-            .font(.largeTitle)
-            .fontWeight(.bold)
-
-          HStack {
-            Text("Look again it's")
-            Text("ShiftUI").fontWeight(.bold)
-            Text("not SwiftUI 👻")
-          }
-          .font(.caption)
-
-          Spacer()
-
-          Text("Select difficulty level")
-            .font(.title)
-
-          HStack(spacing: 20) {
-            ForEach(Level.allCases) { level in
+    VStack {
+      HStack {
+        Text("Look again it's")
+        Text("ShiftUI").fontWeight(.bold)
+        Text("not SwiftUI 👻")
+      }
+      .font(.caption)
+      
+      Spacer()
+      
+      Text("Select difficulty level")
+        .font(.title)
+      
+      HStack(spacing: 20) {
+        ForEach(Level.allCases) { level in
+          Text(level.label)
+            .padding()
+            .background(
               RoundedRectangle(cornerRadius: 10)
                 .neumorphicShadow(height: difficultyLevel == level ? -4 : 4)
-                .overlay(Text(level.label))
-                .frame(width: 100, height: 60)
-                .onTapGesture {
-                  difficultyLevel = level
-                }
+            )
+            .onTapGesture {
+              difficultyLevel = level
             }
-          }
-
-          Spacer()
-
-          NavigationLink(destination: GameView(level: difficultyLevel)){
-            Text("Start Game").font(.title)
-          }
-          .buttonStyle(TileButtonStyle(cornerRadius: 10))
-          .frame(height: 60)
-          .padding(.horizontal, 50)
-
-          Spacer()
-
         }
       }
-      .foregroundColor(.grayText)
+      
+      Spacer()
+      
+      Button {
+        viewManager.activeView = .game
+      } label: {
+        Text("Start Game")
+          .font(.title)
+      }
+      .buttonStyle(TileButtonStyle(cornerRadius: 10))
+      .frame(height: 60)
+      .padding(.horizontal, 50)
+      
+      Spacer()
+      
     }
+    .padding()
   }
 }
 
 struct WelcomeView_Previews: PreviewProvider {
   static var previews: some View {
-    WelcomeView()
+    WelcomeView(difficultyLevel: .constant(.medium))
   }
 }

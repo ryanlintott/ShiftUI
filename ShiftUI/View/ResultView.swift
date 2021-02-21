@@ -8,42 +8,42 @@
 import SwiftUI
 
 struct ResultView: View {
-  @Environment(\.presentationMode) var presentationMode
-  
+  @EnvironmentObject var viewManager: ViewManager
   let score: Int
   
   var body: some View {
-    ZStack {
-      Color.offWhite.edgesIgnoringSafeArea(.all)
+    VStack {
+//      Button {
+//        viewManager.activeView = .home
+//      } label: {
+//        Text("Restart")
+//          .padding()
+//          .background(
+//            Capsule()
+//              .fill(Color.offWhite)
+//          )
+//      }
+//      .buttonStyle(NeumorphicButtonStyle())
       
-      VStack {
-        Button("Restart") {
-          // need to dismiss all views back to the root here
-          presentationMode.wrappedValue.dismiss()
-        }
-        
-        Spacer()
-        
-        Text("Winner Winner\nChicken Dinner...!")
-          .font(.largeTitle)
-          .fontWeight(.medium)
-          .multilineTextAlignment(.center)
-        
-        Spacer()
-        
-        SuccessView(score: score)
-        
-        Spacer()
-      }
+      Spacer()
+      
+      Text("Winner Winner\nChicken Dinner...!")
+        .font(.largeTitle)
+        .fontWeight(.medium)
+        .multilineTextAlignment(.center)
+      
+      Spacer()
+      
+      SuccessView(score: score)
+      
+      Spacer()
     }
-    .foregroundColor(.grayText)
+    .padding()
   }
 }
 
 struct ResultView_Previews: PreviewProvider {
   static var previews: some View {
-    NavigationView {
-      ResultView(score: 343)
-    }
+    ResultView(score: 343)
   }
 }
