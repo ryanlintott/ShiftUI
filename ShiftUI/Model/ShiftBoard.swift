@@ -81,8 +81,6 @@ class ShiftBoard: ObservableObject {
     if let finalAmount = finalAmount {
       dragAmount = finalAmount
     }
-    print("dragAmount \(dragAmount)")
-    print("pushedAmount \(pushedAmount)")
     if let activeSquare = activeSquare {
       if dragAmount >= 0.5 {
         shift(activeSquare)
