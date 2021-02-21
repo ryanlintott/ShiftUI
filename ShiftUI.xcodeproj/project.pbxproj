@@ -32,6 +32,7 @@
 		CF90BD0D25E2E24000AF22FC /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90BD0C25E2E24000AF22FC /* ViewManager.swift */; };
 		CF90BD1025E2FB2B00AF22FC /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90BD0F25E2FB2B00AF22FC /* TileView.swift */; };
 		CF90BD1325E3009E00AF22FC /* AnimationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90BD1225E3009E00AF22FC /* AnimationStyle.swift */; };
+		CF90BD1725E312C700AF22FC /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90BD1625E312C700AF22FC /* AppIconView.swift */; };
 		CFEDD56225E079AE00553F25 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEDD56125E079AE00553F25 /* Position.swift */; };
 		CFEDD56525E079CB00553F25 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEDD56425E079CB00553F25 /* Direction.swift */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,7 @@
 		CF90BD0C25E2E24000AF22FC /* ViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
 		CF90BD0F25E2FB2B00AF22FC /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		CF90BD1225E3009E00AF22FC /* AnimationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationStyle.swift; sourceTree = "<group>"; };
+		CF90BD1625E312C700AF22FC /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
 		CFEDD56125E079AE00553F25 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		CFEDD56425E079CB00553F25 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				CF90BD0725E2DA4C00AF22FC /* ContentView.swift */,
+				CF90BD1625E312C700AF22FC /* AppIconView.swift */,
 				89EE975125E167D40011E694 /* WelcomeView.swift */,
 				CF434A0725E025BD0065B8B1 /* GameView.swift */,
 				CF90BD0125E2C24800AF22FC /* BigTitleView.swift */,
@@ -238,6 +241,7 @@
 				CF434A1B25E047BC0065B8B1 /* ShiftSquare.swift in Sources */,
 				896B1FB525E1127C00D8A818 /* SuccessView.swift in Sources */,
 				CF00009125E1719E00B103C4 /* ShiftableView.swift in Sources */,
+				CF90BD1725E312C700AF22FC /* AppIconView.swift in Sources */,
 				896B1FBB25E1348400D8A818 /* ResultView.swift in Sources */,
 				CF90BD0525E2C89500AF22FC /* NeumorphicButton.swift in Sources */,
 				CFEDD56525E079CB00553F25 /* Direction.swift in Sources */,
