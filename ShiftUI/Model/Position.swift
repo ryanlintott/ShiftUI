@@ -16,11 +16,11 @@ struct Position: Equatable, Hashable, Comparable {
   }
   
   func sharesColumn(with position: Position) -> Bool {
-    self.column == position.column
+    column == position.column
   }
   
   func sharesRow(with position: Position) -> Bool {
-    self.row == position.row
+    row == position.row
   }
   
   func isAbove(_ position: Position) -> Bool {

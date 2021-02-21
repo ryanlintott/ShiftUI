@@ -16,6 +16,10 @@ struct ShiftSquare: Comparable, UniqueById {
     self.solvedPosition = solvedPosition
   }
   
+  var isSolved: Bool {
+    position == solvedPosition
+  }
+  
   func changingPosition(to newPosition: Position) -> ShiftSquare {
     ShiftSquare(position: newPosition, solvedPosition: solvedPosition)
   }
@@ -41,5 +45,11 @@ struct ShiftSquare: Comparable, UniqueById {
   
   static func < (lhs: ShiftSquare, rhs: ShiftSquare) -> Bool {
     lhs.position < rhs.position
+  }
+}
+
+extension Collection where Element == ShiftSquare {
+  var isSolved: Bool {
+    self.allSatisfy({ $0.isSolved })
   }
 }

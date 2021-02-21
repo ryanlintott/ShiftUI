@@ -29,6 +29,7 @@
 		CF90BD0225E2C24800AF22FC /* BigTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90BD0125E2C24800AF22FC /* BigTitleView.swift */; };
 		CF90BD0525E2C89500AF22FC /* NeumorphicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90BD0425E2C89500AF22FC /* NeumorphicButton.swift */; };
 		CF90BD0825E2DA4C00AF22FC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90BD0725E2DA4C00AF22FC /* ContentView.swift */; };
+		CF90BD0D25E2E24000AF22FC /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90BD0C25E2E24000AF22FC /* ViewManager.swift */; };
 		CFEDD56225E079AE00553F25 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEDD56125E079AE00553F25 /* Position.swift */; };
 		CFEDD56525E079CB00553F25 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEDD56425E079CB00553F25 /* Direction.swift */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,7 @@
 		CF90BD0125E2C24800AF22FC /* BigTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigTitleView.swift; sourceTree = "<group>"; };
 		CF90BD0425E2C89500AF22FC /* NeumorphicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphicButton.swift; sourceTree = "<group>"; };
 		CF90BD0725E2DA4C00AF22FC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CF90BD0C25E2E24000AF22FC /* ViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
 		CFEDD56125E079AE00553F25 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		CFEDD56425E079CB00553F25 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +107,7 @@
 			children = (
 				89DCCB4925E0FDAB00861A66 /* Extension */,
 				CF434A0525E025BD0065B8B1 /* ShiftUIApp.swift */,
+				CF90BD0C25E2E24000AF22FC /* ViewManager.swift */,
 				CF434A1525E02A110065B8B1 /* Model */,
 				CF434A1F25E04B4A0065B8B1 /* View */,
 				CF434A0925E025BE0065B8B1 /* Assets.xcassets */,
@@ -233,6 +236,7 @@
 				CF90BD0525E2C89500AF22FC /* NeumorphicButton.swift in Sources */,
 				CFEDD56525E079CB00553F25 /* Direction.swift in Sources */,
 				89EE975525E1744F0011E694 /* NavigationBarColor.swift in Sources */,
+				CF90BD0D25E2E24000AF22FC /* ViewManager.swift in Sources */,
 				896B1FB825E12D8700D8A818 /* NeumorphicShadow.swift in Sources */,
 				CF90BD0825E2DA4C00AF22FC /* ContentView.swift in Sources */,
 				89DCCB4625E0EEA500861A66 /* TileButton.swift in Sources */,

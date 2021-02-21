@@ -10,7 +10,8 @@ import SwiftUI
 struct GameView: View {
   @EnvironmentObject var viewManager: ViewManager
   @StateObject var board = ShiftBoard()
-  @State private var showResult = false
+  @State private var isShowingResult = false
+  @State private var isShowingBoard = false
   
   let level: Level
 
@@ -18,7 +19,7 @@ struct GameView: View {
     ZStack {
       Color.clear
       
-      if showResult {
+      if isShowingResult {
         ResultView(score: board.moves)
       } else {
         VStack {
@@ -38,17 +39,49 @@ struct GameView: View {
           .padding(.horizontal, 30)
           .padding(.all, 10)
           .onTapGesture {
-            showResult = true // added for demo purpose only
+            isShowingResult = true // added for demo purpose only
           }
           
-          BoardView()
-            .environmentObject(board)
+//          Button {
+//            withAnimation {
+////              board.randomShift()
+//              board.shuffleBoard()
+//            }
+//          } label: {
+//            Text("Random")
+//              .padding()
+//          }
+          GeometryReader { proxy in
+            if isShowingBoard {
+              BoardView(availableSize: proxy.size)
+                .environmentObject(board)
+            }
+          }
         }
         .padding()
       }
     }
-    .onAppear {
-      board.initBoard(level: level)
+    .onAppear(perform: setupBoard)
+    .onChange(of: board.isSolved) { isSolved in
+      if isSolved {
+        showResults()
+      }
+    }
+  }
+  
+  func setupBoard() {
+    board.initBoard(level: level)
+    withAnimation(Animation.easeInOut(duration: 1)) {
+      isShowingBoard = true
+    }
+    withAnimation(Animation.easeInOut(duration: 1).delay(1)) {
+      board.shuffleBoard()
+    }
+  }
+  
+  func showResults() {
+    withAnimation {
+      isShowingResult = true
     }
   }
 }

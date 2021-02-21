@@ -7,14 +7,6 @@
 
 import SwiftUI
 
-enum ViewState {
-  case home, game
-}
-
-class ViewManager: ObservableObject {
-  @Published var activeView: ViewState = .home
-}
-
 struct ContentView: View {
   @StateObject var viewManager: ViewManager = ViewManager()
   @State private var difficultyLevel: Level = .medium

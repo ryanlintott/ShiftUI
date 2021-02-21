@@ -8,11 +8,11 @@
 import Foundation
 
 class ShiftBoard: ObservableObject {
-  private(set) var totalColumns: Int = 0
   private(set) var totalRows: Int = 0
+  private(set) var totalColumns: Int = 0
   
   @Published private(set) var squares: Set<ShiftSquare> = []
-  @Published private(set) var emptyPosition: Position = Position(row: 4, column: 4)
+  @Published private(set) var emptyPosition: Position = Position(row: 0, column: 0)
   @Published private(set) var activeSquare: ShiftSquare? = nil
   @Published private(set) var dragAmount: Double = 0 {
     didSet {
@@ -21,6 +21,9 @@ class ShiftBoard: ObservableObject {
   }
   @Published private(set) var pushedAmount: Double = 0
   @Published private(set) var moves: Int = 0
+  var isSolved: Bool {
+    squares.isSolved
+  }
   
   var dragDirection: Direction {
     guard let activeSquare = activeSquare else {
@@ -46,12 +49,12 @@ class ShiftBoard: ObservableObject {
   }
   
   func initBoard(level: Level) {
-    initBoard(columns: level.columns, rows: level.rows)
+    initBoard(rows: level.rows, columns: level.columns)
   }
   
-  func initBoard(columns: Int, rows: Int) {
-    totalColumns = columns
+  func initBoard(rows: Int, columns: Int) {
     totalRows = rows
+    totalColumns = columns
     emptyPosition = Position(row: rows, column: columns)
     squares = []
     for row in 1...totalRows {
@@ -104,12 +107,34 @@ class ShiftBoard: ObservableObject {
   func shift(_ square: ShiftSquare) {
     let direction = shiftableDirection(of: square)
     let pushableSquares = self.pushableSquares(whenShifting: square)
-    squares.update(with: square.shifting(dragDirection))
+    squares.update(with: square.shifting(direction))
     pushableSquares.forEach({
       squares.update(with: $0.shifting(direction))
     })
     if direction != .none {
       emptyPosition = square.position
+    }
+  }
+  
+  func randomShift() {
+    if let square = squares.filter({ $0.position.sharesColumn(with: emptyPosition) || $0.position.sharesRow(with: emptyPosition) }).randomElement() {
+      shift(square)
+    }
+  }
+  
+  public func shuffleBoard() {
+    for i in 0...100 {
+      if i % 2 == 0 {
+        // shift vertical
+        if let square = squares.filter({ $0.position.sharesColumn(with: emptyPosition) }).randomElement() {
+          shift(square)
+        }
+      } else {
+        // shift horizontal
+        if let square = squares.filter({ $0.position.sharesRow(with: emptyPosition) }).randomElement() {
+          shift(square)
+        }
+      }
     }
   }
 }
