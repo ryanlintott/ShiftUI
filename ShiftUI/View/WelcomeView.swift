@@ -36,13 +36,15 @@ struct WelcomeView: View {
             .onTapGesture {
               difficultyLevel = level
             }
+            
         }
       }
       
       Spacer()
       
+      
       Button {
-        viewManager.activeView = .game
+        viewManager.changeViewNeumorphic(to: .game)
       } label: {
         Text("Start Game")
           .font(.title)

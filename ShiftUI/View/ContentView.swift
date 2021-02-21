@@ -23,19 +23,28 @@ struct ContentView: View {
           WelcomeView(difficultyLevel: $difficultyLevel)
         case .game:
           GameView(level: difficultyLevel)
+        case .none:
+          Color.clear
         }
       }
     }
     .overlay(
       Group {
-        if viewManager.activeView != .home {
-          Button {
-            viewManager.activeView = .home
+        if viewManager.activeView == .game {
+          NeumorphicButton(height: 2, pressedHeight: -2) {
+            viewManager.changeViewNeumorphic(to: .home)
           } label: {
             Image(systemName: "xmark")
               .font(Font.title.weight(.black))
           }
-          .buttonStyle(NeumorphicButtonStyle(height: 2, pressedHeight: -2))
+          
+//          Button {
+//            viewManager.changeViewNeumorphic(to: .home)
+//          } label: {
+//            Image(systemName: "xmark")
+//              .font(Font.title.weight(.black))
+//          }
+//          .buttonStyle(NeumorphicButtonStyle(height: 2, pressedHeight: -2))
           .padding(10)
         }
       }

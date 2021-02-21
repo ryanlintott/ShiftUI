@@ -8,6 +8,11 @@
 import SwiftUI
 
 extension Shape {
+  func neumorphicShadow(isActive: Bool, color: Color = .offWhite, height: CGFloat = 5) -> some View {
+    self
+      .neumorphicShadow(color: color, height: (isActive ? 1 : 0) * height)
+  }
+  
   func neumorphicShadow(color: Color = .offWhite, height: CGFloat = 5) -> some View {
     self
       .fill(color)
@@ -36,14 +41,14 @@ extension Shape {
       .shadow(color: Color.black.opacity(0.2).opacity(height >= 0 ? 1 : 0), radius: height.magnitude, x: height, y: height)
       .shadow(color: Color.white.opacity(0.7).opacity(height >= 0 ? 1 : 0), radius: height.magnitude, x: -height, y: -height)
   }
-  
-  func neumorphic(for isPressed: Bool) -> some View {
-    self
-      .neumorphicShadow(height: isPressed ? -4 : 5)
-  }
 }
 
 extension View {
+  func neumorphicShadow(isActive: Bool, height: CGFloat = 5) -> some View {
+    self
+      .neumorphicShadow(height: (isActive ? 1 : 0) * height)
+  }
+  
   func neumorphicShadow(height: CGFloat = 5) -> some View {
     self
       .overlay(

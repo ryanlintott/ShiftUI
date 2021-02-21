@@ -24,6 +24,9 @@ class ShiftBoard: ObservableObject {
   var isSolved: Bool {
     squares.isSolved
   }
+  func number(of square: ShiftSquare) -> Int {
+    (square.solvedPosition.row - 1) * totalColumns + square.solvedPosition.column
+  }
   
   var dragDirection: Direction {
     guard let activeSquare = activeSquare else {
@@ -89,10 +92,11 @@ class ShiftBoard: ObservableObject {
       dragAmount = finalAmount
     }
     if let activeSquare = activeSquare {
-      moves += 1
       if dragAmount >= 0.5 {
+        moves += 1
         shift(activeSquare)
       } else if pushedAmount >= 0.5 {
+        moves += 1
         pushedSquares.forEach({
           squares.update(with: $0.shifting(dragDirection))
         })

@@ -9,8 +9,16 @@ import SwiftUI
 
 struct BoardView: View {
   @EnvironmentObject var board: ShiftBoard
+  @State private var visibleTileNumberThreshold: Int = 0
   
   let availableSize: CGSize
+  
+  var delayPerTile: Double {
+    AnimationStyle.neumorphic.duration / Double(board.squares.count)
+  }
+  var speedPerTile: Double {
+    delayPerTile * 4
+  }
   
   var tileSize: CGFloat {
     min(availableSize.width / CGFloat(board.totalColumns), availableSize.height / CGFloat(board.totalRows))
@@ -32,15 +40,11 @@ struct BoardView: View {
           VStack {
             switch position {
             case let .occupied(square):
-              ShiftableView(square: square, tileSize: tileSize) { isShifting in
-                RoundedRectangle(cornerRadius: 5)
-                  .neumorphicShadow(height: board.shiftingSquares.contains(square) ? -4 : 4)
-                  .overlay(
-                    Text("\(number(of: square))")
-                  )
-                  .padding(4)
+              if board.number(of: square) <= visibleTileNumberThreshold {
+                ShiftableView(square: square, tileSize: tileSize) { isShifting in
+                  TileView(square: square)
+                }
               }
-              
             case .empty:
               Color.clear
             }
@@ -49,11 +53,23 @@ struct BoardView: View {
         }
       }
     }
+    .onAppear {
+      for i in 0...board.squares.count {
+        withAnimation(Animation.easeInOut(duration: speedPerTile).delay(Double(i) * delayPerTile + AnimationStyle.neumorphic.duration)) {
+          visibleTileNumberThreshold = i
+        }
+      }
+    }
+    .onDisappear {
+      for i in stride(from: board.squares.count, to: 0, by: -1) {
+        withAnimation(Animation.easeInOut(duration: speedPerTile).delay(Double(i) * delayPerTile)) {
+          visibleTileNumberThreshold = i
+        }
+      }
+    }
   }
   
-  func number(of square: ShiftSquare) -> Int {
-    (square.solvedPosition.row - 1) * board.totalColumns + square.solvedPosition.column
-  }
+  
 }
 
 struct BoardView_Previews: PreviewProvider { 

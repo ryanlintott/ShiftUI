@@ -7,18 +7,47 @@
 
 import SwiftUI
 
+struct NeumorphicButton<Content: View>: View {
+  let height: CGFloat
+  let pressedHeight: CGFloat
+  let action: () -> Void
+  let label: () -> Content
+  
+  @State private var isShowingButton: Bool = false
+
+  var body: some View {
+    Button(action: action) {
+      label()
+        .opacity(isShowingButton ? 1 : 0)
+    }
+    .buttonStyle(NeumorphicButtonStyle(isActive: isShowingButton, height: height, pressedHeight: pressedHeight))
+    .onAppear {
+      withAnimation(AnimationStyle.neumorphic.animation) {
+        isShowingButton = true
+      }
+    }
+    .onDisappear {
+      withAnimation(AnimationStyle.neumorphic.animation) {
+        isShowingButton = true
+      }
+    }
+  }
+}
+
 struct NeumorphicButtonStyle: ButtonStyle {
+  let isActive: Bool
   let height: CGFloat
   let pressedHeight: CGFloat
   
-  init(height: CGFloat = 5, pressedHeight: CGFloat = -4) {
+  init(isActive: Bool = true, height: CGFloat = 5, pressedHeight: CGFloat = -4) {
+    self.isActive = isActive
     self.height = height
     self.pressedHeight = pressedHeight
   }
 
   func makeBody(configuration: Configuration) -> some View {
     configuration.label
-        .neumorphicShadow(height: configuration.isPressed ? pressedHeight : height)
+      .neumorphicShadow(isActive: isActive, height: configuration.isPressed ? pressedHeight : height)
   }
 }
 

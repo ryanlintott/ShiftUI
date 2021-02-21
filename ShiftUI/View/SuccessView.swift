@@ -11,6 +11,9 @@ struct SuccessView: View {
   @State private var scale: CGFloat = 0.8
   @State private var opacity: Double = 1
   
+  @State private var isShowingText: Bool = false
+  @State private var isNeumorphic: Bool = false
+  
   let score: Int
   
   var body: some View {
@@ -23,20 +26,28 @@ struct SuccessView: View {
         .foregroundColor(.pink)
     }
     .frame(width: 200, height: 200)
+    .opacity(isShowingText ? 1 : 0)
     .background(
-      Circle().neumorphicShadow()
+      Circle().neumorphicShadow(isActive: isNeumorphic)
     )
     .background(
       Circle()
-        .neumorphicShadow()
+        .neumorphicShadow(isActive: isNeumorphic)
         .scaleEffect(scale)
         .opacity(opacity)
     )
     .onAppear {
+      withAnimation(AnimationStyle.textFade.animation) {
+        isShowingText = true
+      }
+      withAnimation(AnimationStyle.neumorphic.animation.delay(AnimationStyle.textFade.duration / 2)) {
+        isNeumorphic = true
+      }
       withAnimation(
         Animation
           .easeIn(duration: 2)
           .repeatForever(autoreverses: false)
+          .delay(AnimationStyle.textFade.duration / 2)
       ) {
         opacity = 0.0
         scale = 3

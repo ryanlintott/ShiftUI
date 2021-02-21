@@ -13,24 +13,13 @@ struct ResultView: View {
   
   var body: some View {
     VStack {
-//      Button {
-//        viewManager.activeView = .home
-//      } label: {
-//        Text("Restart")
-//          .padding()
-//          .background(
-//            Capsule()
-//              .fill(Color.offWhite)
-//          )
-//      }
-//      .buttonStyle(NeumorphicButtonStyle())
-      
       Spacer()
       
       Text("Winner Winner\nChicken Dinner...!")
         .font(.largeTitle)
         .fontWeight(.medium)
         .multilineTextAlignment(.center)
+        .animation(AnimationStyle.textFade.animation)
       
       Spacer()
       

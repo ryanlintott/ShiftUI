@@ -40,7 +40,7 @@ struct TileButtonStyle: ButtonStyle {
   }
 }
 
-struct TileView_Previews: PreviewProvider {
+struct TileButton_Previews: PreviewProvider {
   static var previews: some View {
     ZStack {
       Color.offWhite.edgesIgnoringSafeArea(.all)

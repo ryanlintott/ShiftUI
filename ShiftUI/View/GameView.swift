@@ -38,19 +38,7 @@ struct GameView: View {
           )
           .padding(.horizontal, 30)
           .padding(.all, 10)
-          .onTapGesture {
-            isShowingResult = true // added for demo purpose only
-          }
           
-//          Button {
-//            withAnimation {
-////              board.randomShift()
-//              board.shuffleBoard()
-//            }
-//          } label: {
-//            Text("Random")
-//              .padding()
-//          }
           GeometryReader { proxy in
             if isShowingBoard {
               BoardView(availableSize: proxy.size)
@@ -71,16 +59,17 @@ struct GameView: View {
   
   func setupBoard() {
     board.initBoard(level: level)
-    withAnimation(Animation.easeInOut(duration: 1)) {
+    board.shuffleBoard()
+    DispatchQueue.main.asyncAfter(deadline: .now() + AnimationStyle.neumorphic.duration) {
       isShowingBoard = true
-    }
-    withAnimation(Animation.easeInOut(duration: 1).delay(1)) {
-      board.shuffleBoard()
     }
   }
   
   func showResults() {
-    withAnimation {
+    withAnimation(AnimationStyle.neumorphic.animation.delay(1)) {
+      isShowingBoard = false
+    }
+    withAnimation(AnimationStyle.neumorphic.animation.delay(1 + AnimationStyle.neumorphic.duration)) {
       isShowingResult = true
     }
   }
