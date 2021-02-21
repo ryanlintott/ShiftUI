@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct GameView: View {
+  @StateObject var board = ShiftBoard()
   @State private var showResult = false
   @Environment(\.presentationMode) var presentationMode
 
-  let level: Int
-  
+  let level: Level
+
   var body: some View {
     ZStack {
       NavigationLink(
@@ -43,7 +44,10 @@ struct GameView: View {
         
         Spacer()
         
-        BoardView(level: level)
+        BoardView()
+          .environmentObject(board)
+        
+        Spacer()
       }
     }
     .foregroundColor(.grayText)
@@ -58,13 +62,16 @@ struct GameView: View {
       }
       .buttonStyle(TileButtonStyle(cornerRadius: 4))
     )
+    .onAppear {
+      board.initBoard(level: level)
+    }
   }
 }
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
-      GameView(level: 4)
+      GameView(level: .easy)
     }
   }
 }

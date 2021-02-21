@@ -8,28 +8,23 @@
 import SwiftUI
 
 struct BoardView: View {
-  @StateObject var board: ShiftBoard = ShiftBoard()
+  @EnvironmentObject var board: ShiftBoard
   
-  let columns: Int
-  let rows: Int
+//  let columns: Int
+//  let rows: Int
   let boardWidth: CGFloat = 300
   var tileSize: CGFloat {
-    boardWidth / CGFloat(columns)
+    boardWidth / CGFloat(board.totalColumns)
   }
   var boardHeight: CGFloat {
-    tileSize * CGFloat(rows)
+    tileSize * CGFloat(board.totalRows)
   }
   
   var gridColumns: [GridItem] {
     Array<GridItem>.init(
       repeating: GridItem(.fixed(tileSize), spacing: 0),
-      count: columns
+      count: board.totalColumns
     )
-  }
-
-  init(level: Int) {
-    self.columns = level
-    self.rows = level
   }
   
   var body: some View {
@@ -38,7 +33,7 @@ struct BoardView: View {
         VStack {
           switch position {
           case let .occupied(square):
-            ShiftableView(board: board, square: square, tileSize: tileSize) { isShifting in
+            ShiftableView(square: square, tileSize: tileSize) { isShifting in
               RoundedRectangle(cornerRadius: 5)
                 .neumorphicShadow(height: board.shiftingSquares.contains(square) ? -4 : 5)
                 .overlay(
@@ -54,9 +49,6 @@ struct BoardView: View {
         .frame(width: tileSize, height: tileSize)
       }
     }
-    .onAppear{
-      board.initBoard(columns: columns, rows: rows)
-    }
   }
   
   func number(of square: ShiftSquare) -> Int {
@@ -65,7 +57,9 @@ struct BoardView: View {
 }
 
 struct BoardView_Previews: PreviewProvider {
+  
   static var previews: some View {
-    BoardView(level: 4)
+    BoardView()
+      .environmentObject(ShiftBoard(level: .easy))
   }
 }

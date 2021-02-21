@@ -8,8 +8,8 @@
 import Foundation
 
 class ShiftBoard: ObservableObject {
-  private(set) var totalColumns: Int = 4
-  private(set) var totalRows: Int = 4
+  private(set) var totalColumns: Int = 0
+  private(set) var totalRows: Int = 0
   
   @Published private(set) var squares: Set<ShiftSquare> = []
   @Published private(set) var emptyPosition: Position = Position(row: 4, column: 4)
@@ -20,6 +20,7 @@ class ShiftBoard: ObservableObject {
     }
   }
   @Published private(set) var pushedAmount: Double = 0
+  @Published private(set) var moves: Int = 0
   
   var dragDirection: Direction {
     guard let activeSquare = activeSquare else {
@@ -40,15 +41,18 @@ class ShiftBoard: ObservableObject {
     return pushedSquares.union([activeSquare])
   }
   
-  
-  func initBoard(columns: Int, rows: Int) {
-    self.totalColumns = columns
-    self.totalRows = rows
-    self.emptyPosition = Position(row: rows, column: columns)
-    createBoard()
+  init(level: Level = .easy) {
+    initBoard(level: level)
   }
   
-  func createBoard() {
+  func initBoard(level: Level) {
+    initBoard(columns: level.columns, rows: level.rows)
+  }
+  
+  func initBoard(columns: Int, rows: Int) {
+    totalColumns = columns
+    totalRows = rows
+    emptyPosition = Position(row: rows, column: columns)
     squares = []
     for row in 1...totalRows {
       for column in 1...totalColumns {
@@ -82,6 +86,7 @@ class ShiftBoard: ObservableObject {
       dragAmount = finalAmount
     }
     if let activeSquare = activeSquare {
+      moves += 1
       if dragAmount >= 0.5 {
         shift(activeSquare)
       } else if pushedAmount >= 0.5 {

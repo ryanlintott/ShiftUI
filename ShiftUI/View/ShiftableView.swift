@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ShiftableView<Content: View>: View {
-  @ObservedObject var board: ShiftBoard
+  @EnvironmentObject var board: ShiftBoard
   let square: ShiftSquare
   let tileSize: CGFloat
   let content: (Bool) -> Content
@@ -24,7 +24,7 @@ struct ShiftableView<Content: View>: View {
         if isDragging {
           // nothing
         } else {
-          withAnimation {
+          withAnimation(Animation.spring(response: 0.1, dampingFraction: 0.95, blendDuration: 0.5)) {
             board.dragEnded(finalAmount: dragAmount(predictedDragOffset))
           }
         }

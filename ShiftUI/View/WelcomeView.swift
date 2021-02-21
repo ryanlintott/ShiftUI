@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WelcomeView: View {
-  @State private var difficultyLevel = 4
+  @State private var difficultyLevel: Level = .medium
 
   var body: some View {
     NavigationView {
@@ -33,25 +33,34 @@ struct WelcomeView: View {
             .font(.title)
 
           HStack(spacing: 20) {
-            RoundedRectangle(cornerRadius: 10)
-              .neumorphicShadow(height: difficultyLevel == 3 ? -4 : 4)
-              .overlay(Text("Easy"))
-              .frame(width: 100, height: 60)
-              .onTapGesture { difficultyLevel = 3 }
-
-
-            RoundedRectangle(cornerRadius: 10)
-              .neumorphicShadow(height: difficultyLevel == 4 ? -4 : 4)
-              .overlay(Text("Normal"))
-              .frame(width: 100, height: 60)
-              .onTapGesture { difficultyLevel = 4 }
-
-
-            RoundedRectangle(cornerRadius: 10)
-              .neumorphicShadow(height: difficultyLevel == 5 ? -4 : 4)
-              .overlay(Text("Difficult"))
-              .frame(width: 100, height: 60)
-              .onTapGesture { difficultyLevel = 5 }
+            ForEach(Level.allCases) { level in
+              RoundedRectangle(cornerRadius: 10)
+                .neumorphicShadow(height: difficultyLevel == level ? -4 : 4)
+                .overlay(Text(level.label))
+                .frame(width: 100, height: 60)
+                .onTapGesture {
+                  difficultyLevel = level
+                }
+            }
+//            RoundedRectangle(cornerRadius: 10)
+//              .neumorphicShadow(height: difficultyLevel == 3 ? -4 : 4)
+//              .overlay(Text("Easy"))
+//              .frame(width: 100, height: 60)
+//              .onTapGesture { difficultyLevel = 3 }
+//
+//
+//            RoundedRectangle(cornerRadius: 10)
+//              .neumorphicShadow(height: difficultyLevel == 4 ? -4 : 4)
+//              .overlay(Text("Normal"))
+//              .frame(width: 100, height: 60)
+//              .onTapGesture { difficultyLevel = 4 }
+//
+//
+//            RoundedRectangle(cornerRadius: 10)
+//              .neumorphicShadow(height: difficultyLevel == 5 ? -4 : 4)
+//              .overlay(Text("Difficult"))
+//              .frame(width: 100, height: 60)
+//              .onTapGesture { difficultyLevel = 5 }
           }
 
           Spacer()
