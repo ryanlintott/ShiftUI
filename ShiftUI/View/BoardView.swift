@@ -22,7 +22,7 @@ struct BoardView: View {
   
   var gridColumns: [GridItem] {
     Array<GridItem>.init(
-      repeating: GridItem(.fixed(tileSize), spacing: 10),
+      repeating: GridItem(.fixed(tileSize), spacing: 0),
       count: columns
     )
   }
@@ -33,21 +33,24 @@ struct BoardView: View {
   }
   
   var body: some View {
-    LazyVGrid(columns: gridColumns, alignment: .center, spacing: 10) {
+    LazyVGrid(columns: gridColumns, alignment: .center, spacing: 0) {
       ForEach(board.positions.sorted()) { position in
         VStack {
           switch position {
           case let .occupied(square):
-            TileButton(data: number(of: square)) {
-              withAnimation(Animation.easeInOut(duration: 1)) {
-                board.shift(square)
-              }
+            ShiftableView(board: board, square: square, tileSize: tileSize) { isShifting in
+              RoundedRectangle(cornerRadius: 5)
+                .neumorphicShadow(height: board.shiftingSquares.contains(square) ? -4 : 5)
+                .overlay(
+                  Text("\(number(of: square))")
+                )
+                .padding(5)
             }
+            
           case .empty:
             Color.clear
           }
         }
-        .padding(1)
         .frame(width: tileSize, height: tileSize)
       }
     }

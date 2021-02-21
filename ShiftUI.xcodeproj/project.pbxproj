@@ -15,7 +15,7 @@
 		89DCCB4F25E0FDD100861A66 /* Gradient+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DCCB4E25E0FDD100861A66 /* Gradient+Extension.swift */; };
 		89EE975225E167D40011E694 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EE975125E167D40011E694 /* WelcomeView.swift */; };
 		89EE975525E1744F0011E694 /* NavigationBarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EE975425E1744F0011E694 /* NavigationBarColor.swift */; };
-		CF00009125E1719E00B103C4 /* ShiftTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00009025E1719E00B103C4 /* ShiftTile.swift */; };
+		CF00009125E1719E00B103C4 /* ShiftableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00009025E1719E00B103C4 /* ShiftableView.swift */; };
 		CF0EE75625E07EFD002B3601 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A2525E04B6A0065B8B1 /* BoardView.swift */; };
 		CF434A0625E025BD0065B8B1 /* ShiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A0525E025BD0065B8B1 /* ShiftUIApp.swift */; };
 		CF434A0825E025BD0065B8B1 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A0725E025BD0065B8B1 /* GameView.swift */; };
@@ -24,6 +24,7 @@
 		CF434A1725E02A4F0065B8B1 /* ShiftBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A1625E02A4F0065B8B1 /* ShiftBoard.swift */; };
 		CF434A1B25E047BC0065B8B1 /* ShiftSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A1A25E047BC0065B8B1 /* ShiftSquare.swift */; };
 		CF434A2925E054B60065B8B1 /* BoardPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF434A2825E054B60065B8B1 /* BoardPosition.swift */; };
+		CF90BCF225E1A53700AF22FC /* UniqueById.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF90BCF125E1A53700AF22FC /* UniqueById.swift */; };
 		CFEDD56225E079AE00553F25 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEDD56125E079AE00553F25 /* Position.swift */; };
 		CFEDD56525E079CB00553F25 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEDD56425E079CB00553F25 /* Direction.swift */; };
 /* End PBXBuildFile section */
@@ -37,7 +38,7 @@
 		89DCCB4E25E0FDD100861A66 /* Gradient+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gradient+Extension.swift"; sourceTree = "<group>"; };
 		89EE975125E167D40011E694 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		89EE975425E1744F0011E694 /* NavigationBarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarColor.swift; sourceTree = "<group>"; };
-		CF00009025E1719E00B103C4 /* ShiftTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftTile.swift; sourceTree = "<group>"; };
+		CF00009025E1719E00B103C4 /* ShiftableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftableView.swift; sourceTree = "<group>"; };
 		CF434A0225E025BD0065B8B1 /* ShiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF434A0525E025BD0065B8B1 /* ShiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftUIApp.swift; sourceTree = "<group>"; };
 		CF434A0725E025BD0065B8B1 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
@@ -48,6 +49,7 @@
 		CF434A1A25E047BC0065B8B1 /* ShiftSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftSquare.swift; sourceTree = "<group>"; };
 		CF434A2525E04B6A0065B8B1 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		CF434A2825E054B60065B8B1 /* BoardPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPosition.swift; sourceTree = "<group>"; };
+		CF90BCF125E1A53700AF22FC /* UniqueById.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniqueById.swift; sourceTree = "<group>"; };
 		CFEDD56125E079AE00553F25 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		CFEDD56425E079CB00553F25 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +71,7 @@
 				89DCCB4A25E0FDC400861A66 /* Color+Extension.swift */,
 				89DCCB4E25E0FDD100861A66 /* Gradient+Extension.swift */,
 				89EE975425E1744F0011E694 /* NavigationBarColor.swift */,
+				CF90BCF125E1A53700AF22FC /* UniqueById.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -131,7 +134,7 @@
 				896B1FBA25E1348400D8A818 /* ResultView.swift */,
 				CF434A2525E04B6A0065B8B1 /* BoardView.swift */,
 				89DCCB4525E0EEA500861A66 /* TileButton.swift */,
-				CF00009025E1719E00B103C4 /* ShiftTile.swift */,
+				CF00009025E1719E00B103C4 /* ShiftableView.swift */,
 				896B1FB425E1127C00D8A818 /* SuccessView.swift */,
 				896B1FB725E12D8700D8A818 /* NeumorphicShadow.swift */,
 			);
@@ -208,11 +211,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFEDD56225E079AE00553F25 /* Position.swift in Sources */,
+				CF90BCF225E1A53700AF22FC /* UniqueById.swift in Sources */,
 				89DCCB4B25E0FDC400861A66 /* Color+Extension.swift in Sources */,
 				CF434A1725E02A4F0065B8B1 /* ShiftBoard.swift in Sources */,
 				CF434A1B25E047BC0065B8B1 /* ShiftSquare.swift in Sources */,
 				896B1FB525E1127C00D8A818 /* SuccessView.swift in Sources */,
-				CF00009125E1719E00B103C4 /* ShiftTile.swift in Sources */,
+				CF00009125E1719E00B103C4 /* ShiftableView.swift in Sources */,
 				896B1FBB25E1348400D8A818 /* ResultView.swift in Sources */,
 				CFEDD56525E079CB00553F25 /* Direction.swift in Sources */,
 				89EE975525E1744F0011E694 /* NavigationBarColor.swift in Sources */,

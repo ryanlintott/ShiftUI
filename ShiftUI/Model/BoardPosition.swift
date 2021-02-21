@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum BoardPosition: Comparable, Identifiable, Hashable {
+enum BoardPosition: Comparable, UniqueById {
   case occupied(square: ShiftSquare)
   case empty(position: Position)
   
@@ -42,8 +42,8 @@ enum BoardPosition: Comparable, Identifiable, Hashable {
     switch self {
     case let .occupied(square):
       return square.id
-    case .empty:
-      return Position(row: -1, column: -1)
+    case let .empty(position):
+      return Position(row: -position.row, column: -position.column)
     }
   }
   

@@ -55,7 +55,7 @@ struct Position: Equatable, Hashable, Comparable {
   
   func isBetween(a: Position, b: Position) -> Bool {
     if (self.sharesColumn(with: a) && self.sharesColumn(with: b)) || (self.sharesRow(with: a) && self.sharesRow(with: b)) {
-      return (a <= self && self <= b) || (b <= self && self <= a)
+      return (a < self && self < b) || (b < self && self < a)
     }
     return false
   }

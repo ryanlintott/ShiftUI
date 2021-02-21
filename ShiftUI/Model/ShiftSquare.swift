@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ShiftSquare: Hashable, Comparable, Identifiable {
+struct ShiftSquare: Comparable, UniqueById {
   var position: Position
   let solvedPosition: Position
   
@@ -31,11 +31,7 @@ struct ShiftSquare: Hashable, Comparable, Identifiable {
   var id: Position {
     solvedPosition
   }
-  
-  func hash(into hasher: inout Hasher) {
-    hasher.combine(id)
-  }
-  
+
   var log: String {
     """
     number \(position.row) \(position.column)
